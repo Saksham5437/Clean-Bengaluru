@@ -20,12 +20,15 @@ import pymysql
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 load_dotenv(PROJECT_ROOT / ".env")
 
-DB_URL = os.getenv("MYSQL_DATABASE_URL", "mysql+pymysql://root:Sakre5437@127.0.0.1:3306/clean_bengaluru")
+DB_URL = os.getenv("MYSQL_DATABASE_URL")
+if not DB_URL:
+    raise SystemExit("Error: MYSQL_DATABASE_URL is not set. Please configure it in your .env file or environment.")
+
 # Parse standard pymysql parameters
 import re
 match = re.match(r"mysql\+pymysql://([^:]+):([^@]+)@([^:]+):(\d+)/(.+)", DB_URL)
 if not match:
-    raise ValueError(f"Could not parse DB_URL: {DB_URL}")
+    raise ValueError(f"Could not parse DB_URL: {DB_URL}. Format should be: mysql+pymysql://user:pass@host:port/dbname")
 db_user, db_pass, db_host, db_port, db_name = match.groups()
 
 UPLOAD_DIR = PROJECT_ROOT / "storage" / "uploads"

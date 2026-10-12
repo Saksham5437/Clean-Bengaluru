@@ -4,6 +4,7 @@ backend/.venv/
 backend/**/__pycache__/
 storage/uploads/*
 !storage/uploads/.gitkeep
+!storage/uploads/*_evidence.jpg
 .env
 *.log
 database/mysql/.runtime/
