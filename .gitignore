@@ -1,0 +1,10 @@
+frontend/node_modules/
+frontend/dist/
+backend/.venv/
+backend/**/__pycache__/
+storage/uploads/*
+!storage/uploads/.gitkeep
+.env
+*.log
+database/mysql/.runtime/
+database/mysql/.runtime*/
